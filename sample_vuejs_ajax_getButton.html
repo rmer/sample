@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vue ajax</title>
+  </head>
+  <body>
+    <div id="app">
+        {{ info }}
+        <button v-on:click="get">Get</button>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/jquery"></script>  
+  
+    <script type="text/javascript"> 
+      var app = new Vue({
+        el: '#app',
+        data () {
+          return { info: null }
+        },
+        methods:{ //v-on:click="xxxx"のイベントに紐づく関数
+          get: function(){ //v-on:click="get"時の処理
+              axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+                  .then(response => (this.info = response))
+          }
+        }
+      })
+    </script>
+
+  </body>
+</html>
